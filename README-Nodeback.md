@@ -98,31 +98,31 @@ Method Overview
 
 | HTTP Method 	| Endpoint                          	| Auth Method            	| Required Scope                                   	| Methods                            	|
 |-------------	|-----------------------------------	|------------------------	|-------------------------------------------------	|-----------------------------------	|
-| GET         	| /v1/products                      	| OAuth or server_token 	|                                                 	| products.getAllForAddress        	|
-| GET         	| /v1/products                      	| OAuth or server_token 	|                                                 	| products.getAllForLocation        	|
-| GET         	| /v1/products/{product_id}         	| OAuth or server_token 	|                                                 	| products.getByID                  	|
-| PUT         	| /v1/sandbox/products/{product_id}         	| OAuth or server_token   | (Sandbox mode)                                   	| products.setSurgeMultiplierByID     |
-| PUT         	| /v1/sandbox/products/{product_id}         	| OAuth or server_token   | (Sandbox mode)                                   	| products.setDriversAvailabilityByID |
-| GET         	| /v1/estimates/price               	| OAuth or server_token 	|                                                 	| estimates.getPriceForRoute        	|
-| GET         	| /v1/estimates/price               	| OAuth or server_token 	|                                                 	| estimates.getPriceForRouteByAddress        	|
-| GET         	| /v1/estimates/time                	| OAuth or server_token 	|                                                 	| estimates.getETAForAddress       	|
-| GET         	| /v1/estimates/time                	| OAuth or server_token 	|                                                 	| estimates.getETAForLocation       	|
+| GET         	| /v1.2/products                      	| OAuth or server_token 	|                                                 	| products.getAllForAddress        	|
+| GET         	| /v1.2/products                      	| OAuth or server_token 	|                                                 	| products.getAllForLocation        	|
+| GET         	| /v1.2/products/{product_id}         	| OAuth or server_token 	|                                                 	| products.getByID                  	|
+| PUT         	| /v1.2/sandbox/products/{product_id}         	| OAuth or server_token   | (Sandbox mode)                                   	| products.setSurgeMultiplierByID     |
+| PUT         	| /v1.2/sandbox/products/{product_id}         	| OAuth or server_token   | (Sandbox mode)                                   	| products.setDriversAvailabilityByID |
+| GET         	| /v1.2/estimates/price               	| OAuth or server_token 	|                                                 	| estimates.getPriceForRoute        	|
+| GET         	| /v1.2/estimates/price               	| OAuth or server_token 	|                                                 	| estimates.getPriceForRouteByAddress        	|
+| GET         	| /v1.2/estimates/time                	| OAuth or server_token 	|                                                 	| estimates.getETAForAddress       	|
+| GET         	| /v1.2/estimates/time                	| OAuth or server_token 	|                                                 	| estimates.getETAForLocation       	|
 | GET         	| /v1.2/history                     	| OAuth                  	| history or history_lite                          	| user.getHistory                   	|
-| GET         	| /v1/me                            	| OAuth                  	| profile                                         	| user.getProfile                   	|
-| POST        	| /v1/requests                      	| OAuth                  	| request (privileged)                            	| requests.create                   	|
-| GET         	| /v1/requests/current              	| OAuth                  	| request (privileged) or all_trips (privileged)  	| requests.getCurrent               	|
-| PATCH       	| /v1/requests/current              	| OAuth                  	| request (privileged)                            	| requests.updateCurrent            	|
-| DELETE      	| /v1/requests/current              	| OAuth                  	| request (privileged)                            	| requests.deleteCurrent            	|
-| POST        	| /v1/requests/estimate             	| OAuth                  	| request (privileged)                            	| requests.getEstimates             	|
-| GET         	| /v1/requests/{request_id}         	| OAuth                  	| request (privileged)                            	| requests.getByID                  	|
-| PATCH       	| /v1/requests/{request_id}         	| OAuth                  	| request (privileged)                            	| requests.updateByID               	|
-| PUT         	| /v1/sandbox/requests/{request_id}         	| OAuth                  	| request (privileged & Sandbox mode )            	| requests.setStatusByID             	|
-| DELETE      	| /v1/requests/{request_id}         	| OAuth                  	| request (privileged)                            	| requests.deleteByID               	|
-| GET         	| /v1/requests/{request_id}/map     	| OAuth                  	| request (privileged)                            	| requests.getMapByID               	|
-| GET         	| /v1/requests/{request_id}/receipt 	| OAuth                  	| request_receipt (privileged)                    	| requests.getReceiptByID           	|
+| GET         	| /v1.2/me                            	| OAuth                  	| profile                                         	| user.getProfile                   	|
+| POST        	| /v1.2/requests                      	| OAuth                  	| request (privileged)                            	| requests.create                   	|
+| GET         	| /v1.2/requests/current              	| OAuth                  	| request (privileged) or all_trips (privileged)  	| requests.getCurrent               	|
+| PATCH       	| /v1.2/requests/current              	| OAuth                  	| request (privileged)                            	| requests.updateCurrent            	|
+| DELETE      	| /v1.2/requests/current              	| OAuth                  	| request (privileged)                            	| requests.deleteCurrent            	|
+| POST        	| /v1.2/requests/estimate             	| OAuth                  	| request (privileged)                            	| requests.getEstimates             	|
+| GET         	| /v1.2/requests/{request_id}         	| OAuth                  	| request (privileged)                            	| requests.getByID                  	|
+| PATCH       	| /v1.2/requests/{request_id}         	| OAuth                  	| request (privileged)                            	| requests.updateByID               	|
+| PUT         	| /v1.2/sandbox/requests/{request_id}         	| OAuth                  	| request (privileged & Sandbox mode )            	| requests.setStatusByID             	|
+| DELETE      	| /v1.2/requests/{request_id}         	| OAuth                  	| request (privileged)                            	| requests.deleteByID               	|
+| GET         	| /v1.2/requests/{request_id}/map     	| OAuth                  	| request (privileged)                            	| requests.getMapByID               	|
+| GET         	| /v1.2/requests/{request_id}/receipt 	| OAuth                  	| request_receipt (privileged)                    	| requests.getReceiptByID           	|
 | GET         	| /v1/places/{place_id}             	| OAuth                  	| places                                          	| places.getHome and places.getWork 	|
 | PUT         	| /v1/places/{place_id}             	| OAuth                  	| places                                          	| places.updateHome and places.updateWork                 	|
-| GET         	| v1/payment-methods                	| OAuth                  	| request (privileged)                            	| payment.getMethods                	|
+| GET         	| /v1/payment-methods                	| OAuth                  	| request (privileged)                            	| payment.getMethods                	|
 | POST        	| /v1/reminders                     	| server_token           	|                                                 	| reminders.create                  	|
 | GET         	| /v1/reminders/{reminder_id}       	| server_token           	|                                                 	| reminders.getByID                 	|
 | PATCH       	| /v1/reminders/{reminder_id}       	| server_token           	|                                                 	| reminders.updateByID              	|
