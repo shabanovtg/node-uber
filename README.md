@@ -141,13 +141,18 @@ Method Overview
 | DELETE      	| /v1.2/requests/{request_id}         	| OAuth                  	| request (privileged)                            	| requests.deleteByIDAsync               	|
 | GET         	| /v1.2/requests/{request_id}/map     	| OAuth                  	| request (privileged)                            	| requests.getMapByIDAsync               	|
 | GET         	| /v1.2/requests/{request_id}/receipt 	| OAuth                  	| request_receipt (privileged)                    	| requests.getReceiptByIDAsync           	|
-| GET         	| /v1/places/{place_id}             	| OAuth                  	| places                                          	| places.getHomeAsync and places.getWorkAsync 	|
-| PUT         	| /v1/places/{place_id}             	| OAuth                  	| places                                          	| places.updateHomeAsync and places.updateWorkAsync                 	|
-| GET         	| /v1/payment-methods                	| OAuth                  	| request (privileged)                            	| payment.getMethodsAsync                	|
-| POST        	| /v1/reminders                     	| server_token           	|                                                 	| reminders.createAsync                  	|
-| GET         	| /v1/reminders/{reminder_id}       	| server_token           	|                                                 	| reminders.getByIDAsync                 	|
-| PATCH       	| /v1/reminders/{reminder_id}       	| server_token           	|                                                 	| reminders.updateByIDAsync              	|
-| DELETE      	| /v1/reminders/{reminder_id}       	| server_token           	|                                                 	| reminders.deleteByIDAsync              	|
+| GET         	| /v1.2/places/{place_id}             	| OAuth                  	| places                                          	| places.getHomeAsync and places.getWorkAsync 	|
+| PUT         	| /v1.2/places/{place_id}             	| OAuth                  	| places                                          	| places.updateHomeAsync and places.updateWorkAsync                 	|
+| GET         	| /v1.2/payment-methods                	| OAuth                  	| request (privileged)                            	| payment.getMethodsAsync                	|
+
+Not testing:
+
+| HTTP Method 	| Endpoint                          	| Auth Method            	| Required Scope                                   	| Methods                            	|
+|-------------	|-----------------------------------	|------------------------	|-------------------------------------------------	|-----------------------------------	|
+| POST        	| /v1.2/reminders                     	| server_token           	|                                                 	| reminders.createAsync                  	|
+| GET         	| /v1.2/reminders/{reminder_id}       	| server_token           	|                                                 	| reminders.getByIDAsync                 	|
+| PATCH       	| /v1.2/reminders/{reminder_id}       	| server_token           	|                                                 	| reminders.updateByIDAsync              	|
+| DELETE      	| /v1.2/reminders/{reminder_id}       	| server_token           	|                                                 	| reminders.deleteByIDAsync              	|
 
 
 Endpoint Details
@@ -201,7 +206,7 @@ uber.authorizationAsync({ refresh_token: 'REFRESH_TOKEN' })
 ### /products
 The product endpoint can be accessed either with an OAuth ``access_token`` or simply with the ``server_token`` because it is not user-specific. It has, therefore, no required scope for access.
 
-#### [Get available products for address](https://developer.uber.com/docs/v1-products)
+#### [Get available products for address](https://developer.uber.com/docs/riders/references/api/v1.2/products-get)
 This method utilizes [geocoder](https://github.com/wyattdanger/geocoder) to retrieve the coordinates for an address using Google as the provider. It uses the first element of the response. In other words, the coordinates represent what the Google algorithm provides with most confidence value.
 
 > **Note**: To ensure correct coordinates you should provide the complete address, including city, ZIP code, state, and country.
@@ -217,7 +222,7 @@ uber.products.getAllForAddressAsync('1455 Market St, San Francisco, CA 94103, US
 .error(function(err) { console.error(err); });
 ```
 
-#### [Get available products for location](https://developer.uber.com/docs/v1-products)
+#### [Get available products for location](https://developer.uber.com/docs/riders/references/api/v1.2/products-get)
 ```javascript
 uber.products.getAllForLocationAsync(latitude, longitude);
 ```
@@ -229,7 +234,7 @@ uber.products.getAllForLocationAsync(3.1357169, 101.6881501)
 .error(function(err) { console.error(err); });
 ```
 
-#### [Get product details by product_id](https://developer.uber.com/docs/v1-products-details)
+#### [Get product details by product_id](https://developer.uber.com/docs/riders/references/api/v1.2/products-product_id-get)
 ```javascript
 uber.products.getByIDAsync(product_id);
 ```
@@ -241,7 +246,7 @@ uber.products.getByIDAsync('d4abaae7-f4d6-4152-91cc-77523e8165a4')
 .error(function(err) { console.error(err); });
 ```
 
-#### [Set driver's availability by product_id](https://developer.uber.com/docs/sandbox)
+#### [Set driver's availability by product_id](https://developer.uber.com/docs/riders/guides/sandbox)
 ```javascript
 uber.products.setDriversAvailabilityByIDAsync(product_id, availability);
 ```
@@ -258,7 +263,7 @@ uber.products.setDriversAvailabilityByIDAsync('d4abaae7-f4d6-4152-91cc-77523e816
 .error(function(err) { console.error(err); });
 ```
 
-#### [Set surge multiplier by product_id](https://developer.uber.com/docs/sandbox)
+#### [Set surge multiplier by product_id](https://developer.uber.com/docs/riders/guides/sandbox)
 ```javascript
 uber.products.setSurgeMultiplierByIDAsync(product_id, multiplier);
 ```
@@ -278,7 +283,7 @@ uber.products.setSurgeMultiplierByIDAsync('d4abaae7-f4d6-4152-91cc-77523e8165a4'
 ### /estimates
 The estimates endpoint can be accessed either with an OAuth ``access_token`` or simply with the ``server_token`` because it is not user-specific. It has, therefore, no required scope for access.
 
-#### [Get price estimates for specific address](https://developer.uber.com/docs/v1-estimates-price)
+#### [Get price estimates for specific address](https://developer.uber.com/docs/riders/references/api/v1.2/estimates-price-get)
 This method utilizes [geocoder](https://github.com/wyattdanger/geocoder) to retrieve the coordinates for an address using Google as the provider. It uses the first element of the response. In other words, the coordinates represent what the Google algorithm provides with most confidence value.
 
 > **Note**: To ensure correct coordinates you should provide the complete address, including city, ZIP code, state, and country.
@@ -297,7 +302,7 @@ uber.estimates.getPriceForRouteByAddressAsync(
   .error(function(err) { console.error(err); });
 ```
 
-#### [Get price estimates for specific route](https://developer.uber.com/docs/v1-estimates-price)
+#### [Get price estimates for specific route](https://developer.uber.com/docs/riders/references/api/v1.2/estimates-price-get)
 ```javascript
 uber.estimates.getPriceForRouteAsync(start_latitude, start_longitude, end_latitude, end_longitude [, seats]);
 ```
@@ -311,7 +316,7 @@ uber.estimates.getPriceForRouteAsync(3.1357169, 101.6881501, 3.0833, 101.6500)
 .error(function(err) { console.error(err); });
 ```
 
-#### [Get ETA for address](https://developer.uber.com/docs/v1-estimates-time)
+#### [Get ETA for address](https://developer.uber.com/docs/riders/references/api/v1.2/estimates-time-get)
 This method utilizes [geocoder](https://github.com/wyattdanger/geocoder) to retrieve the coordinates for an address using Google as the provider. It uses the first element of the response. In other words, the coordinates represent what the Google algorithm provides with most confidence value.
 
 > **Note**: To ensure correct coordinates you should provide the complete address, including city, ZIP code, state, and country.
@@ -328,7 +333,7 @@ uber.estimates.getETAForAddressAsync('455 Market St, San Francisco, CA 94103, US
 });
 ```
 
-#### [Get ETA for location](https://developer.uber.com/docs/v1-estimates-time)
+#### [Get ETA for location](https://developer.uber.com/docs/riders/references/api/v1.2/estimates-time-get)
 ```javascript
 uber.estimates.getETAForLocationAsync(latitude, longitude [, product_id]);
 ```
@@ -343,7 +348,7 @@ uber.estimates.getETAForLocationAsync(3.1357169, 101.6881501)
 ### /history
 The history endpoint can be accessed ONLY with an OAuth ``access_token`` authorized with either the ``history`` or ``history_lite`` (without city information) scope.
 
-#### [Get user activity](https://developer.uber.com/docs/v12-history)
+#### [Get user activity](https://developer.uber.com/docs/riders/references/api/v1.2/history-get)
 ```javascript
 uber.user.getHistoryAsync(offset, limit);
 ```
@@ -359,7 +364,7 @@ uber.user.getHistoryAsync(0, 5)
 
 ### /me
 The me endpoint can be accessed ONLY with an OAuth ``access_token`` authorized with the ``profile`` scope.
-#### [Get user profile](https://developer.uber.com/docs/v1-me)
+#### [Get user profile](https://developer.uber.com/docs/riders/references/api/v1.2/me-get)
 ```javascript
 uber.user.getProfileAsync();
 ```
@@ -472,7 +477,7 @@ uber.requests.getEstimatesAsync({
 .error(function(err) { console.error(err); });
 ```
 
-#### [Get request by request_id](https://developer.uber.com/docs/v1-requests-details)
+#### [Get request by request_id](https://developer.uber.com/docs/riders/references/api/v1.2/requests-request_id-get)
 ```javascript
 uber.requests.getByIDAsync(request_id);
 ```
@@ -484,7 +489,7 @@ uber.requests.getByIDAsync('17cb78a7-b672-4d34-a288-a6c6e44d5315')
 .error(function(err) { console.error(err); });
 ```
 
-#### [Update request by request_id](https://developer.uber.com/docs/v1-requests-patch)
+#### [Update request by request_id](https://developer.uber.com/docs/riders/references/api/v1.2/requests-request_id-patch)
 ```javascript
 uber.requests.updateByIDAsync(request_id, parameter);
 ```
@@ -506,12 +511,12 @@ uber.requests.updateByIDAsync('17cb78a7-b672-4d34-a288-a6c6e44d5315', {
 .error(function(err) { console.error(err); });
 ```
 
-#### [Set request status by request_id](https://developer.uber.com/docs/sandbox)
+#### [Set request status by request_id](https://developer.uber.com/docs/riders/guides/sandbox#step-2-modify-sandbox-request)
 ```javascript
 uber.requests.setStatusByIDAsync(request_id, status);
 ```
 
-> **Note**: This method is only allowed in Sandbox mode. Check out the [documentation](https://developer.uber.com/docs/sandbox) for valid status properties.
+> **Note**: This method is only allowed in Sandbox mode. Check out the [documentation](https://developer.uber.com/docs/riders/guides/sandbox) for valid status properties.
 
 ##### Example
 ```javascript
@@ -520,7 +525,7 @@ uber.requests.setStatusByIDAsync('17cb78a7-b672-4d34-a288-a6c6e44d5315', 'accept
 .error(function(err) { console.error(err); });
 ```
 
-#### [Delete request by request_id](https://developer.uber.com/docs/v1-requests-cancel)
+#### [Delete request by request_id](https://developer.uber.com/docs/riders/references/api/v1.2/requests-request_id-delete)
 ```javascript
 uber.requests.deleteByIDAsync(request_id);
 ```
@@ -532,7 +537,7 @@ uber.requests.deleteByIDAsync('17cb78a7-b672-4d34-a288-a6c6e44d5315')
 .error(function(err) { console.error(err); });
 ```
 
-#### [Get request map by request_id](https://developer.uber.com/docs/v1-requests-map)
+#### [Get request map by request_id](https://developer.uber.com/docs/riders/references/api/v1.2/requests-request_id-map-get)
 ```javascript
 uber.requests.getMapByIDAsync(request_id);
 ```
@@ -568,7 +573,7 @@ The places endpoint can be accessed ONLY with an OAuth ``access_token`` authoriz
 
 > **Note**: As of right now, only two place_ids are allowed: ``home`` and ``work``.
 
-#### [Get home address](https://developer.uber.com/docs/v1-places-get)
+#### [Get home address](https://developer.uber.com/docs/riders/references/api/v1.2/places-place_id-get)
 ```javascript
 uber.places.getHomeAsync();
 ```
@@ -580,7 +585,7 @@ uber.places.getHomeAsync()
 .error(function(err) { console.error(err); });
 ```
 
-#### [Get work address](https://developer.uber.com/docs/v1-places-get)
+#### [Get work address](https://developer.uber.com/docs/riders/references/api/v1.2/places-place_id-get)
 ```javascript
 uber.places.getWorkAsync();
 ```
@@ -592,7 +597,7 @@ uber.places.getWorkAsync()
 .error(function(err) { console.error(err); });
 ```
 
-#### [Update home address](https://developer.uber.com/docs/v1-places-put)
+#### [Update home address](https://developer.uber.com/docs/riders/references/api/v1.2/places-place_id-put)
 ```javascript
 uber.places.updateHomeAsync(address);
 ```
@@ -604,7 +609,7 @@ uber.places.updateHomeAsync('685 Market St, San Francisco, CA 94103, USA')
 .error(function(err) { console.error(err); });
 ```
 
-#### [Update work address](https://developer.uber.com/docs/v1-places-put)
+#### [Update work address](https://developer.uber.com/docs/riders/references/api/v1.2/places-place_id-put)
 ```javascript
 uber.places.updateWorkAsync(address);
 ```
@@ -619,7 +624,7 @@ uber.places.updateWorkAsync('1455 Market St, San Francisco, CA 94103, USA')
 ### /payment-methods
 The payment-methods endpoint can be accessed ONLY with an OAuth ``access_token`` authorized with the ``request`` scope.
 
-#### [Get available payment methods](https://developer.uber.com/docs/v1-payment-methods)
+#### [Get available payment methods](https://developer.uber.com/docs/riders/references/api/v1.2/payment-methods-get)
 ```javascript
 uber.payment.getMethodsAsync();
 ```
@@ -630,6 +635,8 @@ uber.payment.getMethodsAsync()
 .then(function(res) { console.log(res); })
 .error(function(err) { console.error(err); });
 ```
+
+
 
 ### /reminders
 The reminders endpoint can be accessed ONLY with a ``server_token``. No OAuth authorization is needed.
@@ -719,18 +726,3 @@ npm test
 ```
 
 In case you would like to contribute to this project, please ensure that all the tests pass before you create a PR. We have strict code style and code coverage (>= 95%) requirements.
-
-Version History
--------
-The change-log can be found in the [Wiki: Version History](https://github.com/shernshiou/node-uber/wiki/Version-History).
-
-TODOs
-------------
-- [ ] Test translation support using ``Content-Language``
-- [ ] Advance Sandbox implementation
-- [ ] Implement rate limit status
-- [ ] Leverage Surge Pricing responses
-- [ ] Implement access_token refresh
-- [ ] Leverage Webhooks
-- [ ] Learn from other Uber SDKs
-- [ ] Check UberPOOL compatibility (https://developer.uber.com/docs/tutorials-rides-api#section-uberpool)

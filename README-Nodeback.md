@@ -120,13 +120,9 @@ Method Overview
 | DELETE      	| /v1.2/requests/{request_id}         	| OAuth                  	| request (privileged)                            	| requests.deleteByID               	|
 | GET         	| /v1.2/requests/{request_id}/map     	| OAuth                  	| request (privileged)                            	| requests.getMapByID               	|
 | GET         	| /v1.2/requests/{request_id}/receipt 	| OAuth                  	| request_receipt (privileged)                    	| requests.getReceiptByID           	|
-| GET         	| /v1/places/{place_id}             	| OAuth                  	| places                                          	| places.getHome and places.getWork 	|
-| PUT         	| /v1/places/{place_id}             	| OAuth                  	| places                                          	| places.updateHome and places.updateWork                 	|
-| GET         	| /v1/payment-methods                	| OAuth                  	| request (privileged)                            	| payment.getMethods                	|
-| POST        	| /v1/reminders                     	| server_token           	|                                                 	| reminders.create                  	|
-| GET         	| /v1/reminders/{reminder_id}       	| server_token           	|                                                 	| reminders.getByID                 	|
-| PATCH       	| /v1/reminders/{reminder_id}       	| server_token           	|                                                 	| reminders.updateByID              	|
-| DELETE      	| /v1/reminders/{reminder_id}       	| server_token           	|                                                 	| reminders.deleteByID              	|
+| GET         	| /v1.2/places/{place_id}             	| OAuth                  	| places                                          	| places.getHome and places.getWork 	|
+| PUT         	| /v1.2/places/{place_id}             	| OAuth                  	| places                                          	| places.updateHome and places.updateWork                 	|
+| GET         	| /v1.2/payment-methods                	| OAuth                  	| request (privileged)                            	| payment.getMethods                	|
 
 
 Endpoint Details
